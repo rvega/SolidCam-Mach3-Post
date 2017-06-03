@@ -58,15 +58,17 @@ endp
     {nb, '( --- Initialisation --- )'}
     {nb, 'G0 G40 G49 G80 G21'}
     {nb, '( --- Go To Machine Origin --- )'}
-    {nb, 'G0 G53 Z0'}
-    {nb, 'G0 G53 X0 Y0 A0'}
+	;{nb, 'G0 G54 Z'(tool_z_level):'5.3(p)'}
+    {nb, 'G0 G54 Z25'}  ; tool_z_level doesn't seem to be defined here. Hardcoding to 25.
+	{nb, 'G0 G54 X0 Y0 A0'}
 endp
+
 
 ;-------------------
 
 @end_program
-    {nb, 'G0 G53 Z0 M9'}
-    {nb, 'G0 G53 X0 Y0 A0 M5'}
+    {nb, 'G0 G54 Z'(tool_z_level):'5.3(p)', ' M9'}
+    {nb, 'G0 G54 X0 Y0 A0 M5'}
     {nl, 'M30'}
 endp
 
@@ -438,12 +440,12 @@ endp
     if fourth_axis_used eq false and rotate_used eq false then 
         ;{nl, '( >>> angle_4x_around_x to be updated <<<)'}
 
-        {nb, 'G0 G53 Z'(tool_z_level):'5.3(p)', '  ; move up to tool_z_level'}
+        {nb, 'G0 G54 Z'(tool_z_level):'5.3(p)', '  ; move up to tool_z_level'}
         
-        ;{nb, 'G0 G53 Z'clearance_level, , '; clearance_level'}
-        ;{nb, 'G0 G53 Z0'}
+        ;{nb, 'G0 G54 Z'clearance_level, , '; clearance_level'}
+        ;{nb, 'G0 G54 Z0'}
         
-        {nb, 'G0 G53 A'(-angle_4x_around_x):'5.3(p)'}
+        {nb, 'G0 G54 A'(-angle_4x_around_x):'5.3(p)'}
     endif
 
 endp
